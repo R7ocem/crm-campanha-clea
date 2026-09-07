@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CRM Campanha 2026</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main id="app">
+    <section class="login">
+      <div class="intro">
+        <p class="eyebrow">CRM CAMPANHA 2026</p>
+        <h1>CRM CAMPANHA 2026</h1>
+        <h2>Central de operacao</h2>
+        <p class="muted">Dados, equipe, acoes e acompanhamento da campanha em um so lugar.</p>
+      </div>
+      <form id="loginForm" class="panel">
+        <h2>Entrar</h2>
+        <label>Email<input name="email" type="email" autocomplete="username" required></label>
+        <label>Senha<input name="password" type="password" autocomplete="current-password" required></label>
+        <button class="primary" type="submit">Acessar CRM</button>
+      </form>
+    </section>
+  </main>
+  <template id="publicTemplate">
+    <section class="publicWrap">
+      <div class="publicHero">
+        <div class="candidateFrame">
+          <img class="candidateImage" src="/static/clea-torres.jpg" alt="Cléa Torres, candidata do PSDB Distrito Federal, número 45155">
+        </div>
+        <div class="publicCopy">
+          <h1>Participe da nossa rede no DF</h1>
+          <div class="campaignText">
+            <strong>Brasília bem cuidada começa onde você mora.</strong>
+            <span>Aprendi cuidando da Asa Norte. Agora quero cuidar de Brasília.</span>
+            <small>Cléa Torres 45155 • PSDB Distrito Federal</small>
+          </div>
+        </div>
+      </div>
+      <form id="publicSignupForm" class="panel publicForm" novalidate>
+        <div class="formIntro">
+          <h2>Faça parte</h2>
+          <p>Leva menos de 1 minuto.</p>
+          <small>* Campos obrigatórios</small>
+        </div>
+        <div id="publicMessage" class="formMessage" role="status" aria-live="polite"></div>
+        <input type="hidden" name="source">
+        <input type="hidden" name="utm_source">
+        <input type="hidden" name="utm_medium">
+        <input type="hidden" name="utm_campaign">
+        <input type="hidden" name="utm_content">
+        <input type="hidden" name="utm_term">
+        <input type="hidden" name="ref">
+        <input type="hidden" name="event">
+        <div class="formSection">
+          <p class="sectionTitle"><span>1</span> Seus dados</p>
+          <label for="publicName">Nome completo *<input id="publicName" name="name" autocomplete="name" required></label>
+          <label for="publicPhone">WhatsApp *
+            <span class="phoneField"><input id="publicPhone" name="phone" inputmode="tel" autocomplete="tel" placeholder="(61) 99999-9999" required><b>WhatsApp</b></span>
+          </label>
+          <label for="publicRegion">Região Administrativa *<select name="region_id" id="publicRegion" required><option value="">Selecione sua região</option></select></label>
+          <label for="publicNeighborhood">Bairro / Quadra<input id="publicNeighborhood" name="neighborhood" autocomplete="address-level3" placeholder="Ex.: Asa Norte, SQN 312"></label>
+        </div>
+        <div class="formSection">
+          <p class="sectionTitle"><span>2</span> Como chegou até nós</p>
+          <label for="publicSource">Como conheceu nossa comunidade?<select name="manual_source" id="publicSource"><option value="outro">Selecione</option></select></label>
+        </div>
+        <p id="referralNotice" class="notice" hidden>Você chegou até aqui por indicação de alguém da nossa comunidade.</p>
+        <div class="formSection">
+          <p class="sectionTitle"><span>3</span> Como você quer se envolver?</p>
+          <div class="choiceList">
+            <label class="choiceLine"><input type="checkbox" name="communication_consent"><span>Receber novidades pelo WhatsApp</span></label>
+            <label class="choiceLine"><input type="checkbox" name="volunteer_interest"><span>Quero ajudar como voluntário(a)</span></label>
+            <label class="choiceLine"><input type="checkbox" name="event_interest"><span>Quero participar de eventos e ações</span></label>
+            <label class="choiceLine"><input type="checkbox" name="mobilizer_interest"><span>Quero ajudar divulgando e convidando outras pessoas</span></label>
+          </div>
+        </div>
+        <div class="formSection supportSection">
+          <p class="sectionTitle"><span>4</span> Apoio declarado <em>Opcional</em></p>
+          <label class="choiceLine supportChoice"><input type="checkbox" name="declared_support"><span>Registrar voluntariamente meu apoio</span></label>
+        </div>
+        <label class="hp">Empresa<input name="company" tabindex="-1" autocomplete="off"></label>
+        <div class="formSection finalizeSection">
+          <p class="sectionTitle"><span>5</span> Finalizar</p>
+          <button class="primary publicSubmit" type="submit">Quero participar</button>
+          <p class="trustText">Seus dados serão utilizados conforme suas escolhas de participação e comunicação. <a href="/privacidade">Política de Privacidade</a></p>
+        </div>
+      </form>
+    </section>
+  </template>
+  <template id="successTemplate">
+    <section class="successWrap">
+      <article class="panel successBox">
+        <p class="eyebrow">Cadastro realizado!</p>
+        <h1>Agora você faz parte da nossa comunidade.</h1>
+        <p id="consentSuccess" class="muted"></p>
+        <div class="shareBox">
+          <h2>Convide outras pessoas</h2>
+          <p class="muted">Compartilhe seu link para que outras pessoas também possam participar.</p>
+          <label>Link pessoal<input id="personalLink" readonly></label>
+          <div class="shareActions">
+            <button id="copyReferral" class="primary">Copiar link</button>
+            <button id="nativeShare">Compartilhar</button>
+            <a id="whatsappShare" class="buttonlike" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+          <img id="qrCode" class="qrCode" alt="QR Code do link pessoal de indicação">
+        </div>
+      </article>
+    </section>
+  </template>
+  <template id="privacyTemplate">
+    <section class="privacyWrap panel">
+      <p class="eyebrow">Política de Privacidade</p>
+      <h1>Como usamos seus dados</h1>
+      <p>Esta página explica, em linguagem simples, como os dados enviados no cadastro público são usados para organização da comunidade e comunicação da campanha.</p>
+      <h2>Controlador dos dados</h2>
+      <p>Os dados do controlador e canal oficial de privacidade ainda devem ser configurados pela coordenação da campanha antes da publicação online.</p>
+      <h2>Dados coletados</h2>
+      <p>Nome, WhatsApp, Região Administrativa, bairro/quadra, origem de chegada, parâmetros de campanha, consentimentos e interesses informados voluntariamente.</p>
+      <h2>Finalidade</h2>
+      <p>Organizar a comunidade, acompanhar origem dos cadastros, registrar indicações, planejar ações e enviar comunicações somente conforme as escolhas feitas no formulário.</p>
+      <h2>Fundamento jurídico</h2>
+      <p>A base aplicável depende da configuração jurídica da campanha. O consentimento específico é registrado quando a pessoa escolhe receber comunicações pelo WhatsApp.</p>
+      <h2>Compartilhamento, armazenamento e segurança</h2>
+      <p>Os dados ficam no CRM da campanha, com acesso restrito à equipe autorizada. O sistema registra histórico, evita duplicidades e protege o painel interno por login.</p>
+      <h2>Direitos do titular</h2>
+      <p>Você pode solicitar acesso, correção, exclusão, cancelamento de comunicações ou registro de não contato pelo canal oficial que será informado pela coordenação.</p>
+      <a class="buttonlike primary" href="/cadastro">Voltar ao cadastro</a>
+    </section>
+  </template>
+  <template id="crmTemplate">
+    <div class="shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="brandBlock">
+          <strong>CRM CAMPANHA 2026</strong>
+          <small>Central de operacao</small>
+        </div>
+        <nav class="sideNav" aria-label="Navegacao principal">
+          <p>Principal</p>
+          <button data-tab="dashboard" class="active">Visao Geral</button>
+          <p>Operacao</p>
+          <button data-tab="contacts">Contatos</button>
+          <button data-tab="events">Acoes e Eventos</button>
+          <button data-tab="users">Equipe</button>
+          <p>Crescimento</p>
+          <button data-tab="referrals">Indicacoes</button>
+          <button data-tab="origins">Origens</button>
+          <p>Gestao</p>
+          <button data-tab="goals">Metas</button>
+          <button data-tab="summary">Resumo</button>
+          <button data-tab="reports">Relatorios</button>
+          <p>Administracao</p>
+          <button data-tab="settings">Configuracoes</button>
+        </nav>
+        <div class="sidebarFoot">
+          <small id="sidebarUser"></small>
+          <button id="logoutBtn" class="ghost">Sair</button>
+        </div>
+      </aside>
+      <div class="drawerShade" id="drawerShade"></div>
+      <main class="workspace">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow" id="viewEyebrow">Visao Geral</p>
+          <h1>Painel de comando</h1>
+          <p class="muted" id="lastUpdated"></p>
+        </div>
+        <div class="topActions">
+          <button id="menuToggle" class="ghost">Menu</button>
+          <button id="collapseSidebar" class="ghost">Recolher</button>
+          <button class="primary" data-open="contact">+ Novo contato</button>
+          <button data-open="event">+ Nova acao</button>
+          <button id="copyPublicLink" class="ghost">Copiar link publico</button>
+        </div>
+      </header>
+      <section id="view"></section>
+      </main>
+    </div>
+    <dialog id="modal"></dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </template>
+  <script src="/static/app.js"></script>
+</body>
+</html>
